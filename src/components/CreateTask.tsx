@@ -1,17 +1,17 @@
 import styles from "../CSS/CreateTask.module.css";
 import * as Icon from "phosphor-react";
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
-import { Tasks } from "./Tasks";
 
-export function CreateTask() {
-  const [tasks, setTasks] = useState(["Nova Tarefa"]);
+interface CreateTaskProps {
+  onCreate(content: string): void;
+}
 
+export function CreateTask({ onCreate }: CreateTaskProps) {
   const [newTaskText, setNewTaskText] = useState("");
 
   function handleCreateNewTask(event: FormEvent) {
     event?.preventDefault();
-
-    setTasks([...tasks, newTaskText]);
+    onCreate(newTaskText);
     setNewTaskText("");
   }
 
@@ -22,13 +22,6 @@ export function CreateTask() {
 
   function handleNewTaskValid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("Esse campo é obrigatório!");
-  }
-
-  function deleteTask(TaskToDelete: string) {
-    const WithoutDeletedOne = tasks.filter((task) => {
-      return task !== TaskToDelete;
-    });
-    setTasks(WithoutDeletedOne);
   }
 
   return (
@@ -47,11 +40,6 @@ export function CreateTask() {
           Criar <Icon.PlusCircle size={40} weight="bold" />
         </button>
       </form>
-      <div>
-        {tasks.map((task) => {
-          return <Tasks key={task} content={task} onDeleteTask={deleteTask} />;
-        })}
-      </div>
     </article>
   );
 }

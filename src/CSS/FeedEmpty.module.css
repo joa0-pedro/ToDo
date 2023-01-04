@@ -1,0 +1,35 @@
+.feed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1.5rem;
+  gap: 1rem;
+  width: 46rem;
+  height: 15.25rem;
+  border-top: 1px solid var(--gray-400);
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+.feed img {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.feed strong {
+  font-weight: bold;
+}
+
+.feed p {
+  font-weight: 400;
+}
+
+.content {
+  color: var(--gray-300);
+  width: 43rem;
+  height: 2.75rem;
+  font-size: 1rem;
+  line-height: 140%;
+  text-align: center;
+}
